@@ -19,17 +19,24 @@ class Cliente {
 
 class ContaCorrente {
     agencia;
-    saldo;
+    // _saldo: '_' usado pela comunidade para representar um dado privado
+    _saldo = 0;
 
     sacar(valor) {
-        if(this.saldo >= valor) {   
-            this.saldo -= valor;
+        if(this._saldo >= valor) {   
+            this._saldo -= valor;
+            return valor;
         }
+        // return: tem duas funções: parar execução antecipadamente ao 
+        // depararmos com uma condição indesejada, algo que chamamos de early return;
+        // ou realmente retornar um valor;
+        return
     };
     depositar(valor) {
-        if(valor > 0) {
-            this.saldo += valor;
+        if(valor < 0) {
+            return;
         }
+        this._saldo += valor;
     }
 }
 
@@ -43,32 +50,27 @@ cliente2.nome = 'Alice';
 cliente2.cpf = 88822233309;
 
 
-console.log(cliente1);
-console.log(cliente2);
+// console.log(cliente1);
+// console.log(cliente2);
 
 
 const contaCorrenteRicardo = new ContaCorrente();
-
-contaCorrenteRicardo.saldo = 0;
+// contaCorrenteRicardo.saldo = 1000;
 contaCorrenteRicardo.agencia = 1001;
-// console.log(contaCorrenteRicardo.saldo);
-// contaCorrenteRicardo.saldo += -100;
-// console.log(contaCorrenteRicardo.saldo);
-// contaCorrenteRicardo.sacar(50);
 
-console.log(contaCorrenteRicardo.saldo);
 contaCorrenteRicardo.depositar(100);
-contaCorrenteRicardo.depositar(200);
-contaCorrenteRicardo.depositar(-1);
-console.log(contaCorrenteRicardo.saldo);
-contaCorrenteRicardo.sacar(50);
+contaCorrenteRicardo.depositar(100);
+contaCorrenteRicardo.depositar(-100);
+const valorSacado = contaCorrenteRicardo.sacar(50);
+
+console.log(valorSacado);
+console.log(contaCorrenteRicardo);
 
 
 // let valorSacado = 200;
 // if(contaCorrenteRicardo.saldo >= valorSacado) {
 //     contaCorrenteRicardo.saldo -= valorSacado;
 // }
-console.log(contaCorrenteRicardo.saldo);
 
 // // para acessar a propriedade da classe, usa a sintaxe objeto.atributo
 
