@@ -1,10 +1,18 @@
 import { Cliente } from './cliente.js';
 
 export class ContaCorrente {
+    // static: utilizar atributo estático, que reflete as alterações em todos os objetos daquela classe, usando a palavra reservada static
+    static numerosDeContas = 0;
     agencia;
     _cliente;
 
     _saldo = 0;
+
+    constructor(agencia, cliente) {
+        this.cliente = cliente;
+        this.agencia = agencia;
+        ContaCorrente.numerosDeContas += 1;
+    }
 
     // set: usado quando quando precisamos acessar o atributo privado 
     // e dando acesso de forma controlada, os chamados métodos assessores
@@ -39,9 +47,7 @@ export class ContaCorrente {
 
     transferir(valor, conta) {
         const valorSacado = this.sacar(valor);
-        conta.depositar(valorSacado);
+        // conta.depositar(valorSacado);
     }
 
-    atribuirCliente() {}
-    pegarCliente() {}
 }
