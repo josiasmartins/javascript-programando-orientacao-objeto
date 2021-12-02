@@ -1,8 +1,27 @@
+import { Cliente } from './cliente.js';
+
 export class ContaCorrente {
     agencia;
-    cliente;
+    _cliente;
+
     _saldo = 0;
 
+    // set: usado quando quando precisamos acessar o atributo privado 
+    // e dando acesso de forma controlada, os chamados métodos assessores
+    set cliente(novoValor) {
+        if(novoValor instanceof Cliente) {
+            this._cliente = novoValor;
+        }
+    }
+
+    get cliente() {
+        return this._cliente;
+    }
+
+    // get: retorna o valor... ele é outro método assessores
+    get saldo() {
+        return this._saldo;
+    }
 
     sacar(valor) {
         if(this._saldo >= valor) {
@@ -22,4 +41,7 @@ export class ContaCorrente {
         const valorSacado = this.sacar(valor);
         conta.depositar(valorSacado);
     }
+
+    atribuirCliente() {}
+    pegarCliente() {}
 }

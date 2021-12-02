@@ -15,12 +15,13 @@ contaCorrenteRicardo.cliente = cliente1;
 contaCorrenteRicardo.depositar(500);
 
 const conta2 = new ContaCorrente();
-conta2.cliente = cliente2;
+conta2.cliente = cliente1;
 conta2.agencia = 102;
 
-contaCorrenteRicardo.transferir(200, conta2);
-console.log(conta2);
-console.log(contaCorrenteRicardo);
+let valor = 200;
+contaCorrenteRicardo.transferir(valor, conta2);
+console.log(conta2.saldo);
+// console.log(contaCorrenteRicardo);
 
 // package.json: todo projeto Node possui um arquivo de configuração contendo uma série de informações
 // sobre o pacote com que estamos trabalhando;
